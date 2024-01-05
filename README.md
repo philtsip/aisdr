@@ -2,7 +2,7 @@
 Researches partial contacts in a Google Sheet and returns nicely formatted results
 
 ## Motivation
-We have a ton of new platform users and it's felt like a huge miss that we know little about them other than their email. Let's try to learn what's publicly known about them.
+We got a ton of new platform users at [Camcorder AI](https://github.com/camcorderai) and it's felt like a huge miss that we know little about them other than their email. Let's try to learn what's publicly known about them.
 
 ## How it works
 
