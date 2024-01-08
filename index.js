@@ -173,8 +173,7 @@ async function llm(
   }
 }
 
-function SearchContact(prompt, sheet, row, lastCol) {
-  return new Promise(async (resolve, reject) => {
+async function SearchContact(prompt, sheet, row, lastCol) {
     try {
       let email = "";
       email = prompt.match(/\S+@\S+\.\S+/);
@@ -199,8 +198,7 @@ function SearchContact(prompt, sheet, row, lastCol) {
 
       let finalFormatedContact = formatContact(llmFormattedContact);
 
-      let linkedin = await googleSearch(prompt, "linkedin.com");
-      let twitter = await googleSearch(prompt, "twitter.com");
+      let [linkedin,twitter] = Promise.all([googleSearch(prompt, "linkedin.com",googleSearch(prompt, "twitter.com"))]);
       let employer_website = "";
       if (finalFormatedContact["employer"] !== "" && finalFormatedContact["employer_website"] == "") {
         employer_website = await googleSearch(finalFormatedContact["employer"] + " website", "");
@@ -240,8 +238,8 @@ function SearchContact(prompt, sheet, row, lastCol) {
       resolve();
     } catch (error) {
       reject(error);
+      throw new Error(error);
     }
-  });
 }
 
 async function SearchContacts() {
