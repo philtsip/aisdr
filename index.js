@@ -234,10 +234,7 @@ async function SearchContact(prompt, sheet, row, lastCol) {
         sheet.getRange(row, lastCol + 8).setValue(finalFormatedContact["bio"]);
       }
       sheet.getRange(row, lastCol + 9).setValue(foundContact);
-
-      resolve();
     } catch (error) {
-      reject(error);
       throw new Error(error);
     }
 }
